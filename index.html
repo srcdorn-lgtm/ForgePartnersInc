@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge Partners, Inc. | Organizational Diagnostic & AI Readiness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep: #0F1628; --navy-mid: #1A1A2E; --navy-light: #1A3A6A;
+    --gold: #C9A84C; --gold-light: #E8C97A;
+    --cream: #F5F0E8; --white: #FFFFFF; --text-muted: #8A9BB0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--navy-deep); color: var(--cream); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 5%; background: rgba(15,22,40,0.93); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,168,76,0.15); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; letter-spacing: 0.12em; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.79rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); text-decoration: none; opacity: 0.78; transition: opacity 0.2s, color 0.2s; }
+  .nav-links a:hover { opacity: 1; color: var(--gold-light); }
+  .nav-cta { font-size: 0.76rem !important; color: var(--navy-deep) !important; background: var(--gold); padding: 0.55rem 1.3rem; opacity: 1 !important; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 8rem 5% 5rem; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(26,58,106,0.35) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%), linear-gradient(165deg, #0F1628 0%, #111827 50%, #0a1020 100%); }
+  .hero-grid { position: absolute; inset: 0; opacity: 0.04; background-image: linear-gradient(rgba(201,168,76,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.5) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-content { position: relative; z-index: 2; max-width: 780px; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.8rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 2.5rem; height: 1px; background: var(--gold); }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 1.5rem; }
+  h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub { font-size: 1.05rem; font-weight: 300; line-height: 1.75; color: var(--text-muted); max-width: 580px; margin-bottom: 2rem; }
+  .hero-pillars { display: flex; align-items: stretch; margin: 0 0 2rem; border: 1px solid rgba(201,168,76,0.18); background: rgba(255,255,255,0.02); }
+  .pillar { display: flex; align-items: center; gap: 1rem; padding: 1.3rem 1.6rem; flex: 1; transition: background 0.25s; }
+  .pillar:hover { background: rgba(201,168,76,0.06); }
+  .pillar-divider { width: 1px; background: rgba(201,168,76,0.18); align-self: stretch; }
+  .pillar-icon { font-size: 1.1rem; color: var(--gold); flex-shrink: 0; opacity: 0.85; }
+  .pillar-text { display: flex; flex-direction: column; gap: 0.2rem; }
+  .pillar-label { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--white); }
+  .pillar-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+  .stress-test-callout { margin: 0 0 2.5rem; border-left: 3px solid var(--gold); background: rgba(201,168,76,0.05); padding: 1.4rem 1.8rem; }
+  .stress-test-label { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.45rem; }
+  .stress-test-copy { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-style: italic; font-weight: 300; color: var(--cream); line-height: 1.55; margin-bottom: 0.8rem; }
+  .stress-test-cta { font-size: 0.76rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: gap 0.2s; }
+  .stress-test-cta:hover { gap: 0.7rem; }
+  .hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; padding: 0.9rem 2rem; background: var(--gold); color: var(--navy-deep); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); text-decoration: none; opacity: 0.75; transition: opacity 0.2s; }
+  .btn-ghost:hover { opacity: 1; }
+  .btn-ghost::after { content: '→'; }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(201,168,76,0.15); flex-wrap: wrap; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 600; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
+
+  /* SHARED */
+  section { padding: 6rem 5%; }
+  .section-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.2; color: var(--white); margin-bottom: 1.2rem; }
+  h2 em { font-style: italic; color: var(--gold-light); }
+  .section-lead { font-size: 1rem; font-weight: 300; line-height: 1.8; color: var(--text-muted); max-width: 620px; }
+
+  /* TS BANNER */
+  #ts-banner { background: var(--navy-mid); padding: 5rem 5%; text-align: center; border-top: 1px solid rgba(201,168,76,0.1); border-bottom: 1px solid rgba(201,168,76,0.1); }
+  .ts-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 3.2rem); font-weight: 300; font-style: italic; color: var(--white); line-height: 1.3; margin-bottom: 1rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+  .ts-quote em { color: var(--gold-light); font-style: normal; }
+  .ts-sub { font-size: 0.88rem; color: var(--text-muted); letter-spacing: 0.06em; }
+
+  /* PROBLEM */
+  #about { background: var(--navy-deep); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3.5rem; }
+  .problem-cards { display: flex; flex-direction: column; gap: 1.5rem; }
+  .problem-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.12); padding: 1.5rem 1.8rem; position: relative; }
+  .problem-card::before { content: attr(data-num); font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 700; color: var(--gold); opacity: 0.13; position: absolute; top: 0.5rem; right: 1.2rem; line-height: 1; }
+  .problem-card h4 { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .problem-card p { font-size: 0.9rem; line-height: 1.7; color: var(--text-muted); }
+
+  /* WHERE IT BREAKS */
+  #breakpoints { background: var(--navy-mid); }
+  .bp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .bp-card { padding: 2rem 1.6rem; border-top: 2px solid rgba(201,168,76,0.25); background: rgba(255,255,255,0.02); transition: border-color 0.25s; }
+  .bp-card:hover { border-color: var(--gold); }
+  .bp-icon { font-size: 1.2rem; color: var(--gold); opacity: 0.7; margin-bottom: 0.9rem; }
+  .bp-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: 0.6rem; }
+  .bp-card p { font-size: 0.83rem; line-height: 1.7; color: var(--text-muted); }
+
+  /* QUIZ */
+  #quiz { background: var(--navy-deep); }
+  .quiz-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; margin-top: 3.5rem; }
+  .quiz-intro p { font-size: 0.95rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.2rem; }
+  .quiz-research { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .research-stat { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1rem 1.2rem; border: 1px solid rgba(201,168,76,0.1); background: rgba(255,255,255,0.02); }
+  .research-num { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; color: var(--gold); line-height: 1; flex-shrink: 0; min-width: 58px; }
+  .research-text { font-size: 0.8rem; line-height: 1.6; color: var(--text-muted); }
+  .research-source { font-size: 0.65rem; color: var(--gold); opacity: 0.6; letter-spacing: 0.08em; margin-top: 0.3rem; }
+  .quiz-panel { background: rgba(15,22,40,0.8); border: 1px solid rgba(201,168,76,0.18); padding: 2.5rem; }
+  .quiz-panel-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--white); margin-bottom: 0.4rem; }
+  .quiz-panel-sub { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .quiz-questions { display: flex; flex-direction: column; gap: 1.2rem; }
+  .quiz-q-text { font-size: 0.88rem; color: var(--cream); margin-bottom: 0.6rem; line-height: 1.5; }
+  .quiz-options { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .quiz-opt { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.15); color: var(--text-muted); font-size: 0.76rem; padding: 0.4rem 0.9rem; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .quiz-opt:hover, .quiz-opt.selected { background: rgba(201,168,76,0.12); border-color: var(--gold); color: var(--cream); }
+  .quiz-divider { height: 1px; background: rgba(201,168,76,0.1); margin: 0.5rem 0; }
+  .quiz-submit { margin-top: 1.8rem; width: 100%; padding: 0.85rem; background: var(--gold); color: var(--navy-deep); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.2s; }
+  .quiz-submit:hover { background: var(--gold-light); }
+  .quiz-result { display: none; }
+  .quiz-result-score { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 600; color: var(--gold); line-height: 1; margin-bottom: 0.3rem; }
+  .quiz-result-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.2rem; }
+  .quiz-result-text { font-size: 0.9rem; line-height: 1.75; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .quiz-result-cta { display: inline-block; padding: 0.8rem 1.8rem; background: var(--gold); color: var(--navy-deep); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+
+  /* SOLUTION */
+  #solution { background: var(--navy-mid); }
+  .solution-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+  .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .tool-card { background: rgba(26,58,106,0.2); border: 1px solid rgba(201,168,76,0.2); padding: 2.5rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+  .tool-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-3px); }
+  .tool-card::after { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); }
+  .tool-icon { font-size: 1.5rem; margin-bottom: 1.2rem; }
+  .tool-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--white); margin-bottom: 0.8rem; }
+  .tool-card p { font-size: 0.9rem; line-height: 1.75; color: var(--text-muted); }
+  .tool-trademark { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-bottom: 0.4rem; }
+  .ai-callout { margin-top: 3rem; padding: 2.5rem; border: 1px solid rgba(201,168,76,0.2); background: rgba(201,168,76,0.04); }
+  .ai-callout h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 300; color: var(--white); margin-bottom: 0.75rem; }
+  .ai-callout p { font-size: 0.92rem; line-height: 1.8; color: var(--text-muted); max-width: 700px; }
+
+  /* SERVICES */
+  #services { background: var(--navy-deep); }
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .service-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(201,168,76,0.1); padding: 2rem 1.8rem; transition: border-color 0.3s, background 0.3s; }
+  .service-card:hover { border-color: rgba(201,168,76,0.35); background: rgba(26,58,106,0.2); }
+  .service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold); font-weight: 600; margin-bottom: 0.3rem; }
+  .service-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.2rem; }
+  .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--white); font-weight: 600; margin-bottom: 0.65rem; }
+  .service-card p { font-size: 0.86rem; line-height: 1.7; color: var(--text-muted); }
+  .service-tag { display: inline-block; margin-top: 1.2rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.3); padding: 0.25rem 0.7rem; }
+
+  /* AUDIENCE */
+  #audience { background: var(--navy-mid); }
+  .audience-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 3.5rem; }
+  .audience-card { padding: 2.2rem; border-top: 2px solid var(--gold); background: rgba(255,255,255,0.02); }
+  .audience-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--white); font-weight: 600; margin-bottom: 0.75rem; }
+  .audience-card p { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); }
+
+  /* BLOG */
+  #blog { background: var(--navy-deep); }
+  .blog-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
+  .blog-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; }
+  .blog-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(201,168,76,0.1); padding: 2rem; cursor: pointer; transition: border-color 0.3s, transform 0.3s; text-decoration: none; display: block; }
+  .blog-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+  .blog-card.featured { padding: 2.5rem; }
+  .blog-tag { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .blog-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); font-weight: 400; line-height: 1.35; margin-bottom: 0.9rem; }
+  .blog-card.featured h3 { font-size: 1.8rem; }
+  .blog-card p { font-size: 0.87rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .blog-meta { display: flex; align-items: center; gap: 1rem; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); opacity: 0.6; }
+  .blog-meta span { color: var(--gold); opacity: 0.7; }
+  .blog-small h3 { font-size: 1.1rem; }
+  .blog-small p { display: none; }
+
+  /* CONTACT */
+  #contact { background: var(--navy-mid); }
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; margin-top: 3.5rem; }
+  .contact-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--white); line-height: 1.4; margin-bottom: 1.5rem; }
+  .contact-info p { font-size: 0.9rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 2rem; }
+  .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-detail { display: flex; align-items: center; gap: 1rem; }
+  .contact-detail-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); min-width: 80px; }
+  .contact-detail-val { font-size: 0.9rem; color: var(--cream); }
+  .deck-offer { margin-top: 2rem; padding: 1.4rem 1.6rem; border: 1px solid rgba(201,168,76,0.2); background: rgba(201,168,76,0.04); }
+  .deck-offer-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .deck-offer p { font-size: 0.82rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 0; }
+  .consult-form { background: rgba(26,26,46,0.6); border: 1px solid rgba(201,168,76,0.15); padding: 3rem; }
+  .form-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--white); margin-bottom: 0.5rem; }
+  .form-sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .form-group label .req { color: var(--gold); margin-left: 2px; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.15); color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s; appearance: none; }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); opacity: 0.5; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: rgba(201,168,76,0.5); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-group select option { background: var(--navy-mid); color: var(--cream); }
+  .form-toggle { display: flex; align-items: center; gap: 0.7rem; cursor: pointer; margin-bottom: 1.5rem; font-size: 0.78rem; color: var(--text-muted); user-select: none; }
+  .form-toggle input[type="checkbox"] { display: none; }
+  .toggle-box { width: 16px; height: 16px; border: 1px solid rgba(201,168,76,0.4); background: transparent; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s; }
+  .form-toggle input:checked + .toggle-box { background: var(--gold); }
+  .toggle-check { display: none; font-size: 0.6rem; color: var(--navy-deep); }
+  .form-toggle input:checked + .toggle-box .toggle-check { display: block; }
+  .form-extended { display: none; }
+  .form-extended.visible { display: block; }
+  .form-divider { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); opacity: 0.6; margin: 1rem 0 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
+  .form-divider::before, .form-divider::after { content: ''; flex: 1; height: 1px; background: rgba(201,168,76,0.15); }
+  .btn-submit { width: 100%; padding: 0.95rem; background: var(--gold); color: var(--navy-deep); font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.2s; }
+  .btn-submit:hover { background: var(--gold-light); }
+  .form-disclaimer { font-size: 0.72rem; color: var(--text-muted); opacity: 0.5; margin-top: 0.75rem; text-align: center; }
+  .form-success { display: none; text-align: center; padding: 2rem; }
+  .form-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 0.75rem; }
+  .form-success p { font-size: 0.9rem; color: var(--text-muted); }
+
+  /* FOOTER */
+  footer { background: #080d18; padding: 3rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; border-top: 1px solid rgba(201,168,76,0.1); }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.12em; color: var(--white); }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy { font-size: 0.75rem; color: var(--text-muted); opacity: 0.5; text-align: center; }
+  .footer-badges { display: flex; gap: 1rem; }
+  .badge { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.3); padding: 0.3rem 0.7rem; opacity: 0.7; }
+
+  /* MODALS */
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(8,13,24,0.93); backdrop-filter: blur(8px); overflow-y: auto; padding: 4rem 5%; }
+  .modal-overlay.open { display: block; }
+  .modal-inner { max-width: 720px; margin: 0 auto; background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.15); padding: 3.5rem; position: relative; }
+  .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer; line-height: 1; transition: color 0.2s; }
+  .modal-close:hover { color: var(--gold); }
+  .modal-tag { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--white); line-height: 1.3; margin-bottom: 0.75rem; }
+  .modal-meta { font-size: 0.75rem; color: var(--text-muted); opacity: 0.6; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(201,168,76,0.1); }
+  .modal-body { font-size: 0.95rem; line-height: 1.9; color: var(--text-muted); }
+  .modal-body p { margin-bottom: 1.2rem; }
+  .modal-body h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--white); margin: 1.8rem 0 0.75rem; }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1000px) {
+    .services-grid, .bp-grid { grid-template-columns: 1fr 1fr; }
+    .blog-grid, .quiz-wrap, .about-grid, .contact-wrap, .solution-header { grid-template-columns: 1fr; gap: 2.5rem; }
+    .audience-grid { grid-template-columns: 1fr 1fr; }
+    .tools-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .services-grid, .audience-grid, .bp-grid { grid-template-columns: 1fr; }
+    .hero-pillars { flex-direction: column; }
+    .pillar-divider { width: 100%; height: 1px; }
+    .hero-stats { gap: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .consult-form { padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">FORGE <span>PARTNERS</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#solution">Our Method</a></li>
+    <li><a href="#quiz">Self-Assessment</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="team.html">Our Team</a></li>
+    <li><a href="#blog">Insights</a></li>
+    <li><a href="#contact" class="nav-cta">Request Consultation</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Organizational Diagnostic &amp; AI Readiness</div>
+    <h1>We give executive teams the <em>diagnostic clarity</em> to build organizations that can withstand anything.</h1>
+    <p class="hero-sub">Forge Partners delivers a proprietary, trademarked diagnostic system — the Stress Test™ and Strength Index™ — that quantifies your organization's structural readiness before you make critical decisions.</p>
+    <div class="hero-pillars">
+      <div class="pillar"><div class="pillar-icon">◈</div><div class="pillar-text"><span class="pillar-label">We Diagnose</span><span class="pillar-desc">Surface structural vulnerabilities before they cost you everything</span></div></div>
+      <div class="pillar-divider"></div>
+      <div class="pillar"><div class="pillar-icon">◆</div><div class="pillar-text"><span class="pillar-label">We Rebuild</span><span class="pillar-desc">Architect the alignment, capacity, and culture your strategy demands</span></div></div>
+      <div class="pillar-divider"></div>
+      <div class="pillar"><div class="pillar-icon">◇</div><div class="pillar-text"><span class="pillar-label">We Strengthen</span><span class="pillar-desc">Track your Strength Index™ so leadership acts on data, not instinct</span></div></div>
+    </div>
+    <div class="stress-test-callout">
+      <div class="stress-test-label">The Stress Test™</div>
+      <p class="stress-test-copy">Is your organization structurally ready to change — or are you about to commit capital to a transformation that will fail?</p>
+      <a href="#contact" class="stress-test-cta">Ask us how <span>→</span></a>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request a Consultation</a>
+      <a href="#quiz" class="btn-ghost">Take the Self-Assessment</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">85%</div><div class="stat-label">AI implementations fail or underdeliver</div></div>
+      <div class="stat-item"><div class="stat-num">70%</div><div class="stat-label">Of change initiatives fail from undiagnosed structural weakness</div></div>
+      <div class="stat-item"><div class="stat-num">7×</div><div class="stat-label">More likely to succeed with excellent change management — Prosci</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMATION STRENGTHENED -->
+<div id="ts-banner">
+  <div class="fade-up">
+    <p class="ts-quote">"Transformation <em>strengthened.</em><br>That's not a tagline. It's the only outcome we accept."</p>
+    <p class="ts-sub">— Forge Partners, Inc. · Every engagement. Every client. Every time.</p>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="about">
+  <div class="fade-up">
+    <p class="section-eyebrow">The Problem We Solve</p>
+    <h2>Executive teams are <em>flying blind</em> on organizational readiness</h2>
+  </div>
+  <div class="about-grid">
+    <div class="fade-up">
+      <p class="section-lead" style="margin-bottom:1.5rem;">Whether you're adopting AI, navigating M&A, scaling operations, or restructuring — transformation doesn't fail at the strategy level. It fails at the structural level: in the seams between leadership, governance, operations, and culture that no one measured before the initiative launched.</p>
+      <p class="section-lead">Opinion-based coaching and generic consulting frameworks dominate the market. No one offers a data-driven, repeatable, quantified diagnostic standard. Until now.</p>
+    </div>
+    <div class="problem-cards fade-up">
+      <div class="problem-card" data-num="01">
+        <h4>No Diagnostic Standard</h4>
+        <p>Most organizations spend $0 on structured diagnostics before major change. Coaches opine. Consultants recommend frameworks. No one stress-tests the structure first.</p>
+      </div>
+      <div class="problem-card" data-num="02">
+        <h4>Failure Chains, Not Isolated Issues</h4>
+        <p>Strategy slips at the seams — between decision rights, operating handoffs, financial visibility, and change adoption. Forge sees these failure chains before they propagate.</p>
+      </div>
+      <div class="problem-card" data-num="03">
+        <h4>Capital Committed Without Readiness</h4>
+        <p>Billions are committed before anyone answers the fundamental question: is this organization structurally ready to absorb the change and capture the value?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE IT BREAKS -->
+<section id="breakpoints">
+  <div class="fade-up">
+    <p class="section-eyebrow">Where Transformation Actually Slips</p>
+    <h2>Forge sees <em>failure chains</em>, not isolated issues</h2>
+    <p class="section-lead" style="margin-top:0.5rem;">Across every organization — regardless of sector, scale, or transformation type — execution fails at the same structural pressure points. The Stress Test™ is built to surface all of them.</p>
+  </div>
+  <div class="bp-grid">
+    <div class="bp-card fade-up">
+      <div class="bp-icon">◎</div>
+      <h4>Governance &amp; Decision Rights</h4>
+      <p>Too many committees, unclear escalation, slow decisions on priorities and trade-offs. Strategy is approved but execution stalls because no one owns the choices that matter.</p>
+    </div>
+    <div class="bp-card fade-up">
+      <div class="bp-icon">◈</div>
+      <h4>Operating Handoffs</h4>
+      <p>Functions, teams, and layers move at different speeds. Handoffs drift. Rework accumulates. Friction compounds until the transformation thesis erodes before it delivers.</p>
+    </div>
+    <div class="bp-card fade-up">
+      <div class="bp-icon">◆</div>
+      <h4>Financial &amp; Capital Visibility</h4>
+      <p>Leaders lack a clear line of sight from activity to enterprise value. Cost, timing, and risk signals arrive too late for leadership to act with confidence.</p>
+    </div>
+    <div class="bp-card fade-up">
+      <div class="bp-icon">◇</div>
+      <h4>Talent &amp; Change Adoption</h4>
+      <p>Leadership approves change, but manager habits, incentive systems, and skills gaps mean the organization never fully converts. Adoption fatigue quietly kills the initiative.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SELF-ASSESSMENT QUIZ -->
+<section id="quiz">
+  <div class="fade-up">
+    <p class="section-eyebrow">Organizational Readiness Self-Assessment</p>
+    <h2>Find out where your organization is <em>most at risk</em></h2>
+  </div>
+  <div class="quiz-wrap">
+    <div class="quiz-intro fade-up">
+      <p>Before you commit capital to transformation — whether it's AI adoption, a restructure, M&A integration, or a growth push — the question that matters most isn't "do we have the right strategy?" It's: <em style="color:var(--cream)">are we structurally ready to execute it?</em></p>
+      <p>Answer five questions. Get a preliminary Strength Index™ score. Understand where your structural exposure is highest — and whether a full diagnostic engagement makes sense for your organization.</p>
+      <div class="quiz-research">
+        <div class="research-stat">
+          <div class="research-num">7×</div>
+          <div><div class="research-text">Projects with excellent change management are 7× more likely to achieve their objectives — 88% met or exceeded goals.</div><div class="research-source">Prosci, 2025 dataset</div></div>
+        </div>
+        <div class="research-stat">
+          <div class="research-num">3×</div>
+          <div><div class="research-text">Organizationally healthy companies deliver 3× the total shareholder returns of unhealthy organizations.</div><div class="research-source">McKinsey, 2024–2025</div></div>
+        </div>
+        <div class="research-stat">
+          <div class="research-num">35%</div>
+          <div><div class="research-text">Higher TSR linked to health investments in large-scale transformations.</div><div class="research-source">McKinsey, 2024</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="quiz-panel fade-up">
+      <div id="quizContent">
+        <div class="quiz-panel-title">Strength Index™ Preview</div>
+        <div class="quiz-panel-sub">5 questions · 2 minutes · No account required</div>
+        <div class="quiz-questions">
+          <div class="quiz-q">
+            <div class="quiz-q-text">1. When your organization makes a major strategic decision, how quickly does it translate into coordinated execution?</div>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-score="1" onclick="selectOpt(this,1)">Rarely — months of lag</button>
+              <button class="quiz-opt" data-score="2" onclick="selectOpt(this,1)">Sometimes, inconsistently</button>
+              <button class="quiz-opt" data-score="3" onclick="selectOpt(this,1)">Usually within weeks</button>
+              <button class="quiz-opt" data-score="4" onclick="selectOpt(this,1)">Consistently and quickly</button>
+            </div>
+          </div>
+          <div class="quiz-divider"></div>
+          <div class="quiz-q">
+            <div class="quiz-q-text">2. How clear are decision rights and accountability across your leadership team?</div>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-score="1" onclick="selectOpt(this,2)">Unclear — frequent overlap or gaps</button>
+              <button class="quiz-opt" data-score="2" onclick="selectOpt(this,2)">Somewhat defined</button>
+              <button class="quiz-opt" data-score="3" onclick="selectOpt(this,2)">Mostly clear</button>
+              <button class="quiz-opt" data-score="4" onclick="selectOpt(this,2)">Explicit and enforced</button>
+            </div>
+          </div>
+          <div class="quiz-divider"></div>
+          <div class="quiz-q">
+            <div class="quiz-q-text">3. How confident is your leadership team in your organization's capacity to absorb a major change right now?</div>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-score="1" onclick="selectOpt(this,3)">Not confident — already stretched</button>
+              <button class="quiz-opt" data-score="2" onclick="selectOpt(this,3)">Cautiously optimistic</button>
+              <button class="quiz-opt" data-score="3" onclick="selectOpt(this,3)">Reasonably confident</button>
+              <button class="quiz-opt" data-score="4" onclick="selectOpt(this,3)">Very confident with data to support it</button>
+            </div>
+          </div>
+          <div class="quiz-divider"></div>
+          <div class="quiz-q">
+            <div class="quiz-q-text">4. When your last major initiative stalled or underdelivered, what was the primary cause?</div>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-score="1" onclick="selectOpt(this,4)">We're not sure — unclear diagnosis</button>
+              <button class="quiz-opt" data-score="2" onclick="selectOpt(this,4)">People or culture resistance</button>
+              <button class="quiz-opt" data-score="2" onclick="selectOpt(this,4)">Execution fragmentation</button>
+              <button class="quiz-opt" data-score="4" onclick="selectOpt(this,4)">External factors we anticipated</button>
+            </div>
+          </div>
+          <div class="quiz-divider"></div>
+          <div class="quiz-q">
+            <div class="quiz-q-text">5. Does your organization have a quantified, trackable metric for organizational health or structural readiness?</div>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-score="1" onclick="selectOpt(this,5)">No — we rely on judgment</button>
+              <button class="quiz-opt" data-score="2" onclick="selectOpt(this,5)">Some informal indicators</button>
+              <button class="quiz-opt" data-score="3" onclick="selectOpt(this,5)">Partial — surveys or engagement scores</button>
+              <button class="quiz-opt" data-score="4" onclick="selectOpt(this,5)">Yes — structured and tracked</button>
+            </div>
+          </div>
+        </div>
+        <button class="quiz-submit" onclick="submitQuiz()">Get My Strength Index™ Preview →</button>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <div class="quiz-panel-title" style="margin-bottom:1.5rem;">Your Preliminary Score</div>
+        <div class="quiz-result-score" id="quizScore">—</div>
+        <div class="quiz-result-label" id="quizLabel">Strength Index™ Preview</div>
+        <div class="quiz-result-text" id="quizText"></div>
+        <a href="#contact" class="quiz-result-cta">Request a Full Diagnostic →</a>
+        <p style="font-size:0.75rem;color:var(--text-muted);opacity:0.55;margin-top:1rem;">This is a preliminary indicator only. A full Forge Stress Test™ engagement produces a board-ready Strength Index™ score with pillar-level breakdown and actionable findings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="solution-header">
+    <div class="fade-up">
+      <p class="section-eyebrow">The Forge Method</p>
+      <h2>A proprietary diagnostic system built on <em>20 years</em> of practitioner experience</h2>
+    </div>
+    <div class="fade-up">
+      <p class="section-lead">Built on change management, executive coaching, I-O psychology, and adult education — Forge is uniquely positioned to address the most urgent organizational challenge of the decade. Find out what's going to break — before it does.</p>
+    </div>
+  </div>
+  <div class="tools-grid fade-up">
+    <div class="tool-card">
+      <div class="tool-trademark">Proprietary Framework</div>
+      <div class="tool-icon">◈</div>
+      <h3>The Stress Test™</h3>
+      <p>A structured diagnostic that organizes evidence across five pillars and translates it into a governance-grade risk picture: leadership alignment, operational capacity, financial visibility, cultural cohesion, and change readiness. The organizational equivalent of a financial stress test — applied before you commit to transformation.</p>
+    </div>
+    <div class="tool-card">
+      <div class="tool-trademark">Quantified Scoring System</div>
+      <div class="tool-icon">◆</div>
+      <h3>The Strength Index™</h3>
+      <p>A quantified scoring model that converts diagnostic findings into a trackable metric executive teams can act on, monitor over time, and reference at every strategic inflection point. Not qualitative impressions — a number you own, understand, and can move.</p>
+    </div>
+  </div>
+  <div class="ai-callout fade-up">
+    <p class="section-eyebrow">AI Readiness</p>
+    <h3>The pre-flight checklist every organization needs before committing capital to AI transformation.</h3>
+    <p>The Stress Test™ directly surfaces the vulnerabilities that kill AI initiatives: unclear ownership, fragmented leadership, low change tolerance, and structural misalignment. Forge Partners is the AI organizational readiness diagnostic — the tool organizations use before they invest, and during implementation to course-correct.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="fade-up">
+    <p class="section-eyebrow">What We Offer</p>
+    <h2>Four interlocking <em>scalable</em> engagements</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-price">$50K–$150K</div>
+      <div class="service-label">Per Engagement</div>
+      <h3>Consulting Engagements</h3>
+      <p>Full-service diagnostic engagements — AI readiness, M&A integration, transformation readiness, and scaling — delivered using the Stress Test™ &amp; Strength Index™. Fixed project fee plus ongoing retainer advisory.</p>
+      <span class="service-tag">Core Revenue</span>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-price">$15K–$50K</div>
+      <div class="service-label">Annual License</div>
+      <h3>Framework Licensing</h3>
+      <p>Annual licensing of the trademarked methodology to consulting firms, private equity sponsors, and HR practices. AI advisory and digital transformation firms represent the fastest-growing licensing segment.</p>
+      <span class="service-tag">Recurring</span>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-price">$3K–$8K</div>
+      <div class="service-label">Per Candidate</div>
+      <h3>Certification Program</h3>
+      <p>A PMP-equivalent certification program that trains and accredits practitioners in the Forge methodology. An AI Change Management track adds a premium tier with annual renewal revenue.</p>
+      <span class="service-tag">Scalable</span>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-price">$500–$2K</div>
+      <div class="service-label">Per Month</div>
+      <h3>SaaS Platform</h3>
+      <p>A client-facing progress tracking application giving organizations a live view of their Strength Index™ score through AI implementation phases and ongoing strategic planning cycles.</p>
+      <span class="service-tag">In Development</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section id="audience">
+  <div class="fade-up">
+    <p class="section-eyebrow">Who We Serve</p>
+    <h2>Leaders navigating <em>consequential change</em></h2>
+  </div>
+  <div class="audience-grid">
+    <div class="audience-card fade-up">
+      <h3>Executive &amp; C-Suite Teams</h3>
+      <p>Mid-market organizations ($10M–$500M revenue) making structural, strategic, AI, or capital investment decisions without a rigorous diagnostic to assess readiness first. We work at the C-suite level natively.</p>
+    </div>
+    <div class="audience-card fade-up">
+      <h3>Boards, PE Sponsors &amp; Acquirers</h3>
+      <p>Governance bodies, private equity sponsors, and M&A acquirers who need board-ready evidence on structural risk before committing to a deal thesis, integration plan, or capital program.</p>
+    </div>
+    <div class="audience-card fade-up">
+      <h3>Consulting Firms &amp; Licensing Partners</h3>
+      <p>Consulting practices and HR firms that want to deliver a proprietary, quantified diagnostic framework to their clients. License the Stress Test™ &amp; Strength Index™ under the Forge brand or your own.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS / BLOG -->
+<section id="blog">
+  <div class="blog-header fade-up">
+    <div>
+      <p class="section-eyebrow">Insights &amp; Publications</p>
+      <h2>Perspectives on <em>organizational resilience</em></h2>
+    </div>
+    <a href="#blog" class="btn-ghost" style="color:var(--gold);opacity:1;">View All Insights</a>
+  </div>
+  <div class="blog-grid">
+    <a class="blog-card featured fade-up" onclick="openPost('post1')" href="javascript:void(0)">
+      <div class="blog-tag">AI Readiness · Featured</div>
+      <h3>Why 85% of AI Implementations Fail — And What Every Executive Needs to Know Before Investing</h3>
+      <p>The failure rate of AI initiatives is not a technology problem. It's an organizational one. Before committing capital, there's a fundamental question that must be answered first.</p>
+      <div class="blog-meta"><span>Forge Partners</span> May 2026 · 8 min read</div>
+    </a>
+    <a class="blog-card blog-small fade-up" onclick="openPost('post2')" href="javascript:void(0)">
+      <div class="blog-tag">McKinsey Research · Organizational Health</div>
+      <h3>Healthy Organizations Deliver 3× the Returns. Here's What "Healthy" Actually Means.</h3>
+      <div class="blog-meta"><span>Forge Partners</span> Apr 2026 · 6 min read</div>
+    </a>
+    <a class="blog-card blog-small fade-up" onclick="openPost('post3')" href="javascript:void(0)">
+      <div class="blog-tag">Leadership</div>
+      <h3>From Instinct to Data: How the Strength Index™ Transforms Strategic Decision-Making</h3>
+      <div class="blog-meta"><span>Forge Partners</span> Mar 2026 · 5 min read</div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-up">
+    <p class="section-eyebrow">Work With Us</p>
+    <h2>Request a <em>consultation</em></h2>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-info fade-up">
+      <h3>"Are we structurally ready to change?" — Forge Partners exists to answer that question with data, not opinion.</h3>
+      <p>Whether you're evaluating an AI investment, navigating transformation, preparing for M&A, or looking to license a diagnostic framework for your practice — we'd like to hear from you.</p>
+      <div class="contact-details">
+        <div class="contact-detail"><span class="contact-detail-label">Website</span><span class="contact-detail-val">forgepartnersinc.com</span></div>
+        <div class="contact-detail"><span class="contact-detail-label">Designation</span><span class="contact-detail-val">Woman-Owned Small Business (WOSB)</span></div>
+        <div class="contact-detail"><span class="contact-detail-label">Market</span><span class="contact-detail-val">Mid-market · $10M–$500M Revenue</span></div>
+      </div>
+      <div class="deck-offer">
+        <div class="deck-offer-label">After You Submit</div>
+        <p>We'll send you the Forge diagnostic brief matched to your specific context — a board-ready overview of how the Stress Test™ and Strength Index™ apply to your transformation challenge. Not a generic deck. Context-matched, every time.</p>
+      </div>
+    </div>
+    <div class="consult-form fade-up">
+      <div id="formWrap">
+        <div class="form-title">Request a Consultation</div>
+        <div class="form-sub">Tell us about yourself and we'll be in touch within one business day.</div>
+        <div class="form-row">
+          <div class="form-group"><label>First Name <span class="req">*</span></label><input type="text" placeholder="Jane" id="fname"></div>
+          <div class="form-group"><label>Last Name <span class="req">*</span></label><input type="text" placeholder="Smith" id="lname"></div>
+        </div>
+        <div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email" placeholder="jane@yourcompany.com" id="email"></div>
+        <div class="form-group"><label>Message <span class="req">*</span></label><textarea placeholder="Tell us about your organization and what you're working through..." id="message"></textarea></div>
+        <label class="form-toggle">
+          <input type="checkbox" id="detailToggle" onchange="toggleDetails()">
+          <span class="toggle-box"><span class="toggle-check">✓</span></span>
+          Share additional context about your organization (optional)
+        </label>
+        <div class="form-extended" id="extendedFields">
+          <div class="form-divider">Organization Details</div>
+          <div class="form-row">
+            <div class="form-group"><label>Company Name</label><input type="text" placeholder="Acme Corp"></div>
+            <div class="form-group"><label>Your Role / Title</label><input type="text" placeholder="Chief Executive Officer"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Annual Revenue</label>
+              <select><option value="">Select range</option><option>$10M – $50M</option><option>$50M – $100M</option><option>$100M – $250M</option><option>$250M – $500M</option><option>$500M+</option></select>
+            </div>
+            <div class="form-group">
+              <label>Primary Challenge</label>
+              <select><option value="">Select one</option><option>AI Readiness Assessment</option><option>Organizational Change</option><option>M&amp;A Integration</option><option>Leadership Alignment</option><option>Scaling &amp; Growth</option><option>Framework Licensing</option><option>Practitioner Certification</option><option>Other</option></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>How Did You Hear About Us?</label>
+            <select><option value="">Select one</option><option>Referral</option><option>LinkedIn</option><option>Web Search</option><option>Conference / Event</option><option>Publication</option><option>Other</option></select>
+          </div>
+        </div>
+        <button class="btn-submit" onclick="submitForm()">Submit Request</button>
+        <p class="form-disclaimer">Your information is kept strictly confidential and will only be used to contact you about your inquiry.</p>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <h3>Request Received</h3>
+        <p>Thank you for reaching out. A member of the Forge Partners team will be in touch within one business day — along with the Forge diagnostic brief matched to your context.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">FORGE <span>PARTNERS</span><br><span style="font-size:0.7rem;letter-spacing:0.1em;color:var(--text-muted);opacity:0.6;font-family:'DM Sans',sans-serif;font-weight:300;">INC.</span></div>
+  <div class="footer-copy">© 2026 Forge Partners, Inc. · forgepartnersinc.com · All Rights Reserved<br>The Stress Test™ and Strength Index™ are proprietary trademarks of Forge Partners, Inc.</div>
+  <div class="footer-badges"><span class="badge">WOSB</span><span class="badge">SBA Eligible</span></div>
+</footer>
+
+<!-- BLOG MODALS -->
+<div class="modal-overlay" id="post1">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closePost('post1')">✕</button>
+    <div class="modal-tag">AI Readiness · Featured</div>
+    <h2 class="modal-title">Why 85% of AI Implementations Fail — And What Every Executive Needs to Know Before Investing</h2>
+    <div class="modal-meta">Forge Partners, Inc. · May 2026 · 8 min read</div>
+    <div class="modal-body">
+      <p>Every week, another executive team signs a contract with an AI implementation vendor. And every week, the majority of those initiatives will quietly underdeliver, stall, or fail entirely before they produce meaningful value.</p>
+      <p>The failure rate of AI initiatives is not a technology problem. It's an organizational one. Structural misalignment, fragmented leadership, low change tolerance, and unclear ownership are the root causes — and none of them appear on a vendor's implementation plan.</p>
+      <h4>The Gap Nobody Talks About</h4>
+      <p>Before your organization commits capital to AI transformation, there is a fundamental question that must be answered: Are you structurally ready to change? Not "do you have the right software?" — but does your organization have the alignment, capacity, and cultural cohesion to absorb and sustain the transformation?</p>
+      <p>Most executive teams cannot answer this question with data. They answer it with optimism. And optimism, at this scale, is expensive.</p>
+      <h4>What the Stress Test™ Reveals</h4>
+      <p>The Forge Partners Stress Test™ is a structured diagnostic that surfaces the organizational vulnerabilities that kill AI initiatives before they begin. It quantifies leadership alignment, operational capacity, cultural cohesion, and change readiness — producing a Strength Index™ score your team can act on, track, and improve. Think of it as the pre-flight checklist every organization should complete before committing capital to transformation.</p>
+      <h4>What You Can Do Right Now</h4>
+      <p>If your organization is evaluating an AI investment — or has already committed and is experiencing friction — the first step is a diagnostic conversation. Forge Partners offers structured assessment engagements that produce a clear, quantified picture of your organizational readiness and a roadmap for closing the gaps.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="post2">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closePost('post2')">✕</button>
+    <div class="modal-tag">McKinsey Research · Organizational Health</div>
+    <h2 class="modal-title">Healthy Organizations Deliver 3× the Returns. Here's What "Healthy" Actually Means.</h2>
+    <div class="modal-meta">Forge Partners, Inc. · April 2026 · 6 min read</div>
+    <div class="modal-body">
+      <p>McKinsey's research is unambiguous: organizationally healthy companies deliver 3× the total shareholder returns of unhealthy ones. In large-scale transformations, health investments have been linked to 35% higher TSR. The data is there. What's missing, for most leadership teams, is a way to measure it.</p>
+      <p>That's the gap the Strength Index™ exists to close. Not a survey of employee sentiment. Not a culture assessment by a coach. A quantified, trackable structural score that gives leadership a number — and a methodology for moving it.</p>
+      <h4>What "Healthy" Actually Means at the Structural Level</h4>
+      <p>Organizational health, at the structural level, is the alignment between strategy, governance, operations, talent, and culture. It's whether decision rights are clear. Whether operating handoffs work under pressure. Whether financial visibility is sufficient to act. Whether change actually converts — not just gets approved.</p>
+      <p>These are not soft questions. They are the hardest, most consequential questions a leadership team faces — and they are almost never answered with data.</p>
+      <h4>The Prosci Finding Every Executive Should Know</h4>
+      <p>Prosci's long-run dataset — updated through 2025 — shows that projects with excellent change management are 7× more likely to achieve their objectives, and 88% of participants with excellent change management met or exceeded goals. The methodology gap is not a nice-to-have. It is a performance multiplier. Forge Partners exists to close that gap with a diagnostic system that produces the structural data leadership needs to act before the failure chains start.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="post3">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closePost('post3')">✕</button>
+    <div class="modal-tag">Leadership</div>
+    <h2 class="modal-title">From Instinct to Data: How the Strength Index™ Transforms Strategic Decision-Making</h2>
+    <div class="modal-meta">Forge Partners, Inc. · March 2026 · 5 min read</div>
+    <div class="modal-body">
+      <p>The best executive teams in the world still make most of their organizational decisions on instinct. Not because they want to — but because they have no alternative. There has never been a reliable, quantified tool for measuring organizational health at the structural level. Until the Strength Index™.</p>
+      <h4>What a Score Changes</h4>
+      <p>When your organization has a Strength Index™ score, something fundamental shifts in how leadership conversations happen. Instead of debating perceptions, you're debating data. Instead of relying on who's the most persuasive voice in the room, you're anchoring decisions to a shared diagnostic baseline. The score also creates accountability — a Strength Index™ of 67 today is a target, and twelve months of intentional organizational work should move that number.</p>
+      <h4>The Strategic Planning Application</h4>
+      <p>Forge Partners clients use the Strength Index™ as an input to strategic planning cycles. Before setting annual priorities, leadership teams run a diagnostic. The score informs which initiatives the organization is structurally ready to execute, and which require foundational work first. This is how data-driven organizational leadership works in practice — not as a concept, but as a tool you use in the room where decisions get made.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  function toggleDetails() {
+    document.getElementById('extendedFields').classList.toggle('visible', document.getElementById('detailToggle').checked);
+  }
+
+  function submitForm() {
+    const f = id => document.getElementById(id).value.trim();
+    if (!f('fname') || !f('lname') || !f('email') || !f('message')) { alert('Please fill in all required fields.'); return; }
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  function openPost(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closePost(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+  document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', function(e) { if (e.target === this) closePost(this.id); }));
+
+  const quizAnswers = {};
+  function selectOpt(btn, q) {
+    btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    quizAnswers[q] = parseInt(btn.dataset.score);
+  }
+  function submitQuiz() {
+    if (Object.keys(quizAnswers).length < 5) { alert('Please answer all 5 questions to get your score.'); return; }
+    const total = Object.values(quizAnswers).reduce((a, b) => a + b, 0);
+    const pct = Math.round((total / 20) * 100);
+    let label, text;
+    if (pct >= 80) {
+      label = 'Structurally Strong';
+      text = 'Your preliminary indicators suggest strong structural readiness. A full Forge Stress Test™ engagement will validate these indicators across all five diagnostic pillars and identify any latent vulnerabilities before your next major initiative.';
+    } else if (pct >= 55) {
+      label = 'Moderate Exposure';
+      text = 'Your responses indicate moderate structural exposure in at least two areas. A full Forge Stress Test™ would identify the specific failure chains most likely to surface under pressure — and give your leadership team a clear sequencing plan.';
+    } else {
+      label = 'Elevated Risk';
+      text = 'Your preliminary indicators suggest meaningful structural vulnerabilities. Before committing capital to transformation, AI investment, or growth, a Forge diagnostic engagement is strongly recommended. The cost of discovering these gaps during execution is significantly higher than addressing them before.';
+    }
+    document.getElementById('quizScore').textContent = pct;
+    document.getElementById('quizLabel').textContent = label + ' · Strength Index™ Preview';
+    document.getElementById('quizText').textContent = text;
+    document.getElementById('quizContent').style.display = 'none';
+    document.getElementById('quizResult').style.display = 'block';
+  }
+</script>
+</body>
+</html>
