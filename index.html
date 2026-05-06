@@ -32,11 +32,11 @@
   .forge-logo-text .t2 { font-family:'DM Sans',sans-serif; font-size:0.55rem; font-weight:600; letter-spacing:0.28em; color:var(--orange); margin-top:1px; }
 
   /* ── NAV ── */
-  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(30,51,80,0.96); backdrop-filter:blur(14px); border-bottom:1px solid rgba(232,98,42,0.18); }
-  .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
-  .nav-links a { font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-body); text-decoration:none; opacity:0.8; transition:opacity 0.2s,color 0.2s; }
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:1rem 5%; gap:0.75rem 1.5rem; background:rgba(30,51,80,0.96); backdrop-filter:blur(14px); border-bottom:1px solid rgba(232,98,42,0.18); }
+  .nav-links { display:flex; flex-wrap:wrap; align-items:center; gap:0.6rem 1.6rem; list-style:none; justify-content:flex-end; }
+  .nav-links a { font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-body); text-decoration:none; opacity:0.8; transition:opacity 0.2s,color 0.2s; white-space:nowrap; }
   .nav-links a:hover { opacity:1; color:var(--orange-lt); }
-  .nav-cta { background:var(--orange) !important; color:var(--white) !important; padding:0.55rem 1.3rem; opacity:1 !important; font-size:0.75rem !important; letter-spacing:0.1em !important; transition:background 0.2s !important; }
+  .nav-cta { background:var(--orange) !important; color:var(--white) !important; padding:0.55rem 1.3rem; opacity:1 !important; font-size:0.75rem !important; letter-spacing:0.1em !important; transition:background 0.2s !important; white-space:nowrap; }
   .nav-cta:hover { background:var(--orange-lt) !important; }
 
   /* ── HERO ── */
@@ -48,6 +48,7 @@
   .hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:var(--orange); }
   h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,6vw,5rem); font-weight:300; line-height:1.1; color:var(--white); margin-bottom:1.4rem; }
   h1 em { font-style:italic; color:var(--orange-lt); }
+  .hero-content h1 { font-size:clamp(2.5rem,5.4vw,4.5rem); }
   .hero-sub { font-size:1.02rem; font-weight:300; line-height:1.78; color:var(--text-muted); max-width:580px; margin-bottom:2rem; }
 
   /* PILLARS */
@@ -68,7 +69,7 @@
   .stress-test-cta:hover { gap:0.7rem; }
 
   .hero-actions { display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
-  .btn-primary { display:inline-block; padding:0.9rem 2rem; background:var(--orange); color:var(--white); font-size:0.8rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:background 0.2s,transform 0.2s; }
+  .btn-primary { display:inline-block; padding:0.9rem 2rem; background:var(--orange); color:var(--white); font-size:0.8rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:background 0.2s,transform 0.2s; white-space:nowrap; }
   .btn-primary:hover { background:var(--orange-lt); transform:translateY(-1px); }
   .btn-ghost { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-body); text-decoration:none; opacity:0.7; transition:opacity 0.2s; }
   .btn-ghost:hover { opacity:1; }
@@ -101,8 +102,8 @@
 
   /* WHERE IT BREAKS */
   #breakpoints { background:var(--navy-mid); }
-  .bp-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:3.5rem; }
-  .bp-card { padding:2rem 1.6rem; border-top:2px solid rgba(232,98,42,0.3); background:rgba(255,255,255,0.025); transition:border-color 0.25s; }
+  .bp-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1.2rem; margin-top:3.5rem; }
+  .bp-card { padding:2rem 1.4rem; border-top:2px solid rgba(232,98,42,0.3); background:rgba(255,255,255,0.025); transition:border-color 0.25s; }
   .bp-card:hover { border-color:var(--orange); }
   .bp-icon { font-size:1.2rem; color:var(--orange); opacity:0.8; margin-bottom:0.9rem; }
   .bp-card h4 { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:600; color:var(--white); margin-bottom:0.6rem; }
@@ -112,11 +113,13 @@
   #quiz { background:var(--navy-deep); }
   .quiz-wrap { display:grid; grid-template-columns:1fr 1.2fr; gap:5rem; align-items:start; margin-top:3.5rem; }
   .quiz-intro p { font-size:0.95rem; line-height:1.8; color:var(--text-muted); margin-bottom:1.2rem; }
-  .quiz-research { margin-top:2rem; display:flex; flex-direction:column; gap:1rem; }
-  .research-stat { display:flex; gap:1.2rem; align-items:flex-start; padding:1rem 1.2rem; border:1px solid var(--border); background:rgba(255,255,255,0.02); }
-  .research-num { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; color:var(--orange); line-height:1; flex-shrink:0; min-width:58px; }
-  .research-text { font-size:0.8rem; line-height:1.6; color:var(--text-muted); }
-  .research-source { font-size:0.65rem; color:var(--orange); opacity:0.65; letter-spacing:0.08em; margin-top:0.3rem; }
+  .quiz-research { margin-top:2rem; }
+  .research-stat { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .research-card { background:rgba(255,255,255,0.025); border:1px solid var(--border); padding:1.8rem; text-align:center; transition:border-color 0.3s; }
+  .research-card:hover { border-color:var(--orange); }
+  .research-num { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:600; color:var(--orange); line-height:1; margin-bottom:0.5rem; }
+  .research-text { font-size:0.78rem; line-height:1.6; color:var(--text-muted); }
+  .research-source { font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); opacity:0.6; margin-top:0.5rem; }
   .quiz-panel { background:rgba(30,51,80,0.85); border:1px solid var(--border); padding:2.5rem; }
   .quiz-panel-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; color:var(--white); margin-bottom:0.4rem; }
   .quiz-panel-sub { font-size:0.8rem; color:var(--text-muted); margin-bottom:2rem; }
@@ -171,6 +174,14 @@
   .blog-meta span { color:var(--orange); opacity:0.8; }
   .blog-small h3 { font-size:1.1rem; }
   .blog-small p { display:none; }
+
+  /* FORGE STANDARD */
+  .method-guarantee { border:1px solid rgba(232,98,42,0.2); background:rgba(232,98,42,0.04); padding:2rem 2.2rem; max-width:900px; margin:0 auto; }
+  .method-guarantee-label { font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--orange); margin-bottom:0.75rem; }
+  .method-guarantee-title { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:400; color:var(--white); margin-bottom:1rem; line-height:1.4; }
+  .method-guarantee-items { display:flex; flex-direction:column; gap:0.6rem; }
+  .method-guarantee-item { display:flex; align-items:flex-start; gap:0.75rem; font-size:0.85rem; color:var(--text-muted); line-height:1.55; }
+  .method-guarantee-item::before { content:'◆'; color:var(--orange); font-size:0.5rem; margin-top:0.35rem; flex-shrink:0; }
 
   /* CONTACT */
   #contact { background:var(--navy-deep); }
@@ -231,6 +242,12 @@
   .modal-body { font-size:0.95rem; line-height:1.9; color:var(--text-muted); }
   .modal-body p { margin-bottom:1.2rem; }
   .modal-body h4 { font-family:'Cormorant Garamond',serif; font-size:1.25rem; color:var(--white); margin:1.8rem 0 0.75rem; }
+  .modal-body a { color:var(--orange-lt); text-decoration:none; border-bottom:1px solid rgba(232,98,42,0.4); transition:border-color 0.2s,color 0.2s; }
+  .modal-body a:hover { color:var(--orange); border-bottom-color:var(--orange); }
+  .modal-source { font-size:0.78rem; color:var(--text-muted); opacity:0.7; margin-top:1.8rem; padding-top:1.2rem; border-top:1px solid var(--border); font-style:italic; line-height:1.6; }
+  .modal-cta-row { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border); }
+  .modal-cta { display:inline-block; padding:0.85rem 1.8rem; background:var(--orange); color:var(--white) !important; font-size:0.78rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:background 0.2s; border-bottom:none !important; }
+  .modal-cta:hover { background:var(--orange-lt); border-bottom:none !important; }
 
   /* ANIMATIONS */
   .fade-up { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease,transform 0.7s ease; }
@@ -238,7 +255,7 @@
 
   /* RESPONSIVE */
   @media (max-width:1000px) {
-    .bp-grid { grid-template-columns:1fr 1fr; }
+    .bp-grid { grid-template-columns:repeat(2,1fr); }
     .blog-grid,.quiz-wrap,.about-grid,.contact-wrap,.solution-header { grid-template-columns:1fr; gap:2.5rem; }
     .audience-grid { grid-template-columns:1fr 1fr; }
     .tools-grid { grid-template-columns:1fr; }
@@ -347,6 +364,7 @@
     <div class="bp-card fade-up"><div class="bp-icon">◈</div><h4>Operating Handoffs</h4><p>Functions and layers move at different speeds. Handoffs drift. Rework accumulates. Friction compounds until the transformation thesis erodes.</p></div>
     <div class="bp-card fade-up"><div class="bp-icon">◆</div><h4>Financial &amp; Capital Visibility</h4><p>Leaders lack a clear line of sight from activity to enterprise value. Cost, timing, and risk signals arrive too late to act with confidence.</p></div>
     <div class="bp-card fade-up"><div class="bp-icon">◇</div><h4>Talent &amp; Change Adoption</h4><p>Leadership approves change, but manager habits, incentive systems, and skills gaps mean the organization never fully converts.</p></div>
+    <div class="bp-card fade-up"><div class="bp-icon">○</div><h4>Cultural Cohesion</h4><p>Shared norms, trust, and identity erode under pressure — and without cohesion, every other pillar leaks performance.</p></div>
   </div>
 </section>
 
@@ -361,9 +379,11 @@
       <p>Before you commit capital to transformation — whether it's AI adoption, a restructure, M&A integration, or a growth push — the question that matters most isn't "do we have the right strategy?" It's: <em style="color:var(--text-body)">Are there fractures that will erode the value or eliminate it?</em></p>
       <p>Answer five questions. Get a preliminary Strength Index™ score. Understand where your risk is the greatest — and whether a full diagnostic engagement makes sense.</p>
       <div class="quiz-research">
-        <div class="research-stat"><div class="research-num">3×</div><div><div class="research-text">Organizationally healthy companies deliver 3× the total shareholder returns of unhealthy organizations.</div><div class="research-source">McKinsey, 2024–2025</div></div>
-        <div class="research-stat"><div class="research-num">7×</div><div><div class="research-text">Projects with excellent change management are 7× more likely to achieve their objectives — 88% met or exceeded goals.</div><div class="research-source">Prosci, 2025 dataset</div></div>
-        <div class="research-stat"><div class="research-num">35%</div><div><div class="research-text">Higher TSR linked to organizational health investments in large-scale transformations.</div><div class="research-source">McKinsey, 2024</div></div></div>
+        <div class="research-stat">
+          <div class="research-card"><div class="research-num">3×</div><div class="research-text">Organizationally healthy companies deliver 3× the total shareholder returns of unhealthy organizations.</div><div class="research-source">McKinsey, 2024–2025</div></div>
+          <div class="research-card"><div class="research-num">7×</div><div class="research-text">Projects with excellent change management are 7× more likely to achieve their objectives — 88% met or exceeded goals.</div><div class="research-source">Prosci, 2025 dataset</div></div>
+          <div class="research-card"><div class="research-num">35%</div><div class="research-text">Higher TSR linked to organizational health investments in large-scale transformations.</div><div class="research-source">McKinsey, 2024</div></div>
+        </div>
       </div>
     </div>
     <div class="quiz-panel fade-up">
@@ -435,7 +455,7 @@
     <h2>Leaders navigating <em>consequential change</em></h2>
   </div>
   <div class="audience-grid">
-    <div class="audience-card fade-up"><h3>Executive &amp; C-Suite Teams</h3><p>Organizations making structural, strategic, AI, or capital investment decisions without a rigorous diagnostic to assess readiness first. We work at the C-suite level natively.</p></div>
+    <div class="audience-card fade-up"><h3>Executive &amp; C-Suite Teams</h3><p>Mid-market organizations (</p></div>
     <div class="audience-card fade-up"><h3>Boards, PE Sponsors &amp; Acquirers</h3><p>Governance bodies, private equity sponsors, and M&A acquirers who need board-ready evidence on organizational risk before committing to a deal thesis, integration plan, or capital program.</p></div>
     <div class="audience-card fade-up"><h3>Consulting Firms &amp; Licensing Partners</h3><p>Consulting practices and HR firms that want to deliver a proprietary, quantified diagnostic framework to their clients. License the Stress Test™ &amp; Strength Index™ as a branded practice offering.</p></div>
   </div>
@@ -448,25 +468,44 @@
       <p class="section-eyebrow">Insights &amp; Publications</p>
       <h2>Perspectives on <em>organizational resilience</em></h2>
     </div>
-    <a href="#blog" class="btn-ghost" style="color:var(--orange);opacity:1;">View All Insights</a>
+    <a href="insights.html" class="btn-ghost" style="color:var(--orange);opacity:1;">View All Insights</a>
   </div>
   <div class="blog-grid">
     <a class="blog-card featured fade-up" onclick="openPost('post1')" href="javascript:void(0)">
       <div class="blog-tag">AI Readiness · Featured</div>
       <h3>Why 85% of AI Implementations Fail — And What Every Executive Needs to Know Before Investing</h3>
       <p>The failure rate of AI initiatives is not a technology problem. It's an organizational one. Before committing capital, there's a fundamental question that must be answered first.</p>
-      <div class="blog-meta"><span>Forge Partners</span> May 2026 · 3 min read</div>
+      <div class="blog-meta"><span>Forge Partners</span> May 2026 · 8 min read</div>
     </a>
     <a class="blog-card blog-small fade-up" onclick="openPost('post2')" href="javascript:void(0)">
       <div class="blog-tag">McKinsey Research · Organizational Health</div>
       <h3>Healthy Organizations Deliver 3× the Returns. Here's What "Healthy" Actually Means.</h3>
-      <div class="blog-meta"><span>Forge Partners</span> Apr 2026 · 3 min read</div>
+      <div class="blog-meta"><span>Forge Partners</span> Apr 2026 · 6 min read</div>
     </a>
     <a class="blog-card blog-small fade-up" onclick="openPost('post3')" href="javascript:void(0)">
       <div class="blog-tag">Leadership</div>
       <h3>From Instinct to Data: How the Strength Index™ Transforms Strategic Decision-Making</h3>
-      <div class="blog-meta"><span>Forge Partners</span> Mar 2026 · 2 min read</div>
+      <div class="blog-meta"><span>Forge Partners</span> Mar 2026 · 5 min read</div>
     </a>
+  </div>
+</section>
+
+<!-- FORGE STANDARD -->
+<section id="forge-standard" style="background:var(--navy-mid);padding:4rem 5%;">
+  <div class="fade-up" style="text-align:center;margin-bottom:2.5rem;">
+    <p class="section-eyebrow">Our Standard</p>
+    <h2>The <em>Forge Standard</em></h2>
+  </div>
+  <div class="method-guarantee fade-up">
+    <div class="method-guarantee-label">The Forge Standard — Every Consultant, Every Engagement</div>
+    <div class="method-guarantee-title">Every practitioner who carries the Forge methodology is certified to a single, non-negotiable standard.</div>
+    <div class="method-guarantee-items">
+      <div class="method-guarantee-item">Trained and certified to PMP-equivalent rigor — not a self-paced course, a practitioner pathway.</div>
+      <div class="method-guarantee-item">Operates exclusively within the Stress Test™ and Strength Index™ framework. No improvised methodology. No generic consulting overlaid on proprietary tools.</div>
+      <div class="method-guarantee-item">Delivers board-ready findings — structured, quantified, and documented to governance-grade clarity that executives and sponsors can act on immediately.</div>
+      <div class="method-guarantee-item">Maintains diagnostic independence. Forge consultants are prohibited from scripting findings to match political narratives or client preferences. Organizational truth is non-negotiable.</div>
+      <div class="method-guarantee-item">Subject to annual recertification and ongoing engagement standards review. The methodology evolves. Certification must keep pace.</div>
+    </div>
   </div>
 </section>
 
@@ -551,14 +590,17 @@
     <h2 class="modal-title">Why 85% of AI Implementations Fail — And What Every Executive Needs to Know Before Investing</h2>
     <div class="modal-meta">Forge Partners, Inc. · May 2026 · 8 min read</div>
     <div class="modal-body">
-      <p>Every week, another executive team signs a contract with an AI implementation vendor. And every week, the majority of those initiatives will quietly underdeliver, stall, or fail entirely before they produce meaningful value.</p>
+      <p>Every week, another executive team signs a contract with an AI implementation vendor. And every week, the majority of those initiatives will quietly underdeliver, stall, or fail entirely before they produce meaningful value. Industry research has converged on a sobering figure: between 70% and 85% of enterprise AI initiatives never produce the value the business case promised. RAND Corporation's <a href="https://www.rand.org/pubs/research_reports/RRA2680-1.html" target="_blank" rel="noopener">2024 root-cause study</a> found that AI projects fail at roughly twice the rate of conventional IT projects — a gap that has nothing to do with the underlying models.</p>
       <p>The failure rate of AI initiatives is not a technology problem. It's an organizational one. Operational misalignment, fragmented leadership, low change tolerance, and unclear ownership are the root causes — and none of them appear on a vendor's implementation plan.</p>
       <h4>The Gap Nobody Talks About</h4>
       <p>Before your organization commits capital to AI transformation, there is a fundamental question that must be answered: Are you ready to change? Not "do you have the right software?" — but does your organization have the alignment, capacity, and cultural cohesion to absorb and sustain the transformation? Most executive teams cannot answer this question with data. They answer it with optimism. And optimism, at this scale, is expensive.</p>
+      <h4>Why "Just Buy More Tools" Doesn't Work</h4>
+      <p>The instinct, when an AI initiative stalls, is to add capability — another platform, another vendor, another pilot. But the RAND analysis is unambiguous: the leading causes of failure are misunderstood problems, lack of access to clean and well-governed data, and an organizational tendency to chase the latest technology without the operating infrastructure to support it. Each of these is upstream of the technology itself. They live in how the organization decides, governs, and adopts. Buying more tools without addressing them simply spreads the failure across a larger surface — and a larger budget.</p>
       <h4>What the Stress Test™ Reveals</h4>
-      <p>The Forge Partners Stress Test™ is a structured diagnostic that surfaces the organizational vulnerabilities that kill AI initiatives before they begin. It quantifies leadership alignment, operational capacity, cultural cohesion, and change readiness — producing a Strength Index™ score your team can act on, track, and improve.</p>
+      <p>The Forge Partners Stress Test™ is a structured diagnostic that surfaces the organizational vulnerabilities that kill AI initiatives before they begin. It quantifies leadership alignment, operational capacity, cultural cohesion, and change readiness — producing a Strength Index™ score your team can act on, track, and improve. The output is not a verdict; it is a sequenced map of the foundational work that must precede investment if the investment is to produce returns.</p>
       <h4>What You Can Do Right Now</h4>
-      <p>If your organization is evaluating an AI investment — or has already committed and is experiencing friction — the first step is a diagnostic conversation. Forge Partners offers structured assessment engagements that produce a clear, quantified picture of your organizational readiness and a roadmap for closing the gaps.</p>
+      <p>If your organization is evaluating an AI investment — or has already committed and is experiencing friction — the first step is a diagnostic conversation. Forge Partners offers structured assessment engagements that produce a clear, quantified picture of your organizational readiness and a roadmap for closing the gaps before more capital is committed.</p>
+      <p class="modal-source">Reference: RAND Corporation, <a href="https://www.rand.org/pubs/research_reports/RRA2680-1.html" target="_blank" rel="noopener">The Root Causes of Failure for Artificial Intelligence Projects and How They Can Succeed</a> (2024).</p>
     </div>
   </div>
 </div>
@@ -570,11 +612,13 @@
     <div class="modal-meta">Forge Partners, Inc. · April 2026 · 6 min read</div>
     <div class="modal-body">
       <p>McKinsey's research is unambiguous: organizationally healthy companies deliver 3× the total shareholder returns of unhealthy ones. In large-scale transformations, health investments have been linked to 35% higher TSR. The data is there. What's missing for most leadership teams is a way to measure it.</p>
+      <p>That finding is not a one-off. McKinsey's <a href="https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/organizational-health-is-still-the-key-to-long-term-performance" target="_blank" rel="noopener">Organizational Health Index research</a>, drawn from more than two decades of data and millions of survey responses, has consistently identified organizational health as the strongest predictor of long-term value creation across industries.</p>
       <p>That's the gap the Strength Index™ exists to close. Not a survey of employee sentiment. Not a culture assessment by a coach. A quantified, trackable organizational score that gives leadership a number — and a methodology for moving it.</p>
       <h4>What "Healthy" Actually Means at the Organizational Level</h4>
       <p>Organizational health, at the operational level, is the alignment between strategy, governance, operations, talent, and culture. It's whether decision rights are clear. Whether operating handoffs work under pressure. Whether financial visibility is sufficient to act. Whether change actually converts — not just gets approved.</p>
       <h4>The Prosci Finding Every Executive Should Know</h4>
       <p>Prosci's long-run dataset — updated through 2025 — shows that projects with excellent change management are 7× more likely to achieve their objectives, and 88% of participants with excellent change management met or exceeded goals. The methodology gap is not a nice-to-have. It is a performance multiplier. Forge Partners exists to close that gap.</p>
+      <p class="modal-source">Reference: McKinsey &amp; Company, <a href="https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/organizational-health-is-still-the-key-to-long-term-performance" target="_blank" rel="noopener">Organizational health is (still) the key to long-term performance</a>.</p>
     </div>
   </div>
 </div>
@@ -588,8 +632,64 @@
       <p>The best executive teams in the world still make most of their organizational decisions on instinct. Not because they want to — but because they have no alternative. There has never been a reliable, quantified tool for measuring organizational health at the operational level. Until the Strength Index™.</p>
       <h4>What a Score Changes</h4>
       <p>When your organization has a Strength Index™ score, something fundamental shifts in how leadership conversations happen. Instead of debating perceptions, you're debating data. The score also creates accountability — a Strength Index™ of 67 today is a target. Twelve months of intentional organizational work should move that number.</p>
+      <h4>From Politics to Evidence</h4>
+      <p>In organizations without a quantified readiness measure, the loudest voice in the room often wins. Strategic priorities get set by who has the strongest internal advocate, not by where the organization has the strongest readiness to deliver. The Strength Index™ flips that dynamic. Pillar-level scores expose where the organization is genuinely ready and where it is not — turning what used to be a political debate into a structured planning input.</p>
       <h4>The Strategic Planning Application</h4>
       <p>Forge Partners clients use the Strength Index™ as an input to strategic planning cycles. Before setting annual priorities, leadership teams run a diagnostic. The score informs which initiatives the organization is ready to execute, and which require foundational work first — in practice, not as a concept.</p>
+      <h4>The Cost of Continuing on Instinct</h4>
+      <p>The performance gap between data-driven and instinct-driven leadership is widening. Industry research repeatedly finds that 70–85% of major change initiatives — including AI transformations — fail or underdeliver, with organizational readiness gaps cited as the dominant cause (see <a href="https://www.rand.org/pubs/research_reports/RRA2680-1.html" target="_blank" rel="noopener">RAND Corporation's 2024 study on AI project failure</a>). Leadership teams that continue making readiness calls by feel are not just leaving value on the table; they are systematically over-committing capital to initiatives the organization is not yet built to absorb.</p>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="post4">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closePost('post4')">✕</button>
+    <div class="modal-tag">Risk Mitigation · Scaling &amp; Change</div>
+    <h2 class="modal-title">Pressure-Test Before You Scale: How the Stress Test™ Reduces the Risk of Failed Transformation</h2>
+    <div class="modal-meta">Forge Partners, Inc. · February 2026 · 7 min read</div>
+    <div class="modal-body">
+      <p>Every scaling decision and every meaningful change initiative carries an implicit assumption: that the organization is ready to absorb it. That assumption is rarely tested. It is asserted in board decks, justified in strategy memos, and then quietly proven wrong six to twelve months into execution — by which point the capital is committed and the friction is structural.</p>
+      <p>The Stress Test™ exists to make that assumption explicit, measurable, and — critically — actionable before the commitment is final.</p>
+      <h4>What the Stress Test™ Actually Does</h4>
+      <p>The Stress Test™ is a structured diagnostic engagement that examines five organizational pillars under the specific stresses of the change being contemplated: leadership alignment, operational capacity, financial and capital visibility, cultural cohesion, and change readiness. It does not measure these in the abstract. It measures them against the load the proposed transformation will place on the organization.</p>
+      <p>The output is a board-ready Strength Index™ score with pillar-level breakdowns, a map of failure chains likely to surface under pressure, and a sequenced list of foundational work that must precede execution. Not opinion. Not a framework imported from another industry. Evidence drawn from the organization itself, structured into something leadership can act on.</p>
+      <h4>Why This Matters at the Scaling Inflection Point</h4>
+      <p>Scaling is the single most exposed moment in an organization's life. Decision rights that worked at $50M revenue collapse at $250M. Operating handoffs that were tolerable across two locations become catastrophic across twelve. Cultural norms that produced cohesion in a 200-person organization fragment in a 1,200-person one. None of these failures show up on a financial model. All of them show up in execution.</p>
+      <p>The same logic applies to any consequential change — M&amp;A integration, restructuring, AI adoption, market expansion, succession. The form of the change varies. The organizational physics do not.</p>
+      <h4>From Implicit Risk to Explicit Risk</h4>
+      <p>The Stress Test™ does not eliminate the risk of transformation failure. It converts that risk from implicit to explicit. Leadership teams move from "we think we're ready" to "here are the three pillars where we are not yet ready, here is what readiness looks like, and here is the sequence of work to get there before we commit capital." That shift — from instinct to evidence — is where the failure rate falls.</p>
+      <h4>The Cost of Skipping the Diagnostic</h4>
+      <p>The cost of running a Stress Test™ is a small fraction of the cost of a failed transformation. Failed change initiatives consume capital, exhaust leadership attention, erode employee trust, and — most damaging — quietly teach the organization that change does not work. That last cost is the one most boards never properly account for, and it is the one that compounds over years.</p>
+      <div class="modal-cta-row">
+        <p style="margin-bottom:1rem;"><strong style="color:var(--white);font-weight:500;">Ready to pressure-test your next move?</strong> If your organization is contemplating a scaling decision, a major change initiative, or a transformation thesis that has not yet been independently stress-tested, a Forge Partners diagnostic conversation is the right next step.</p>
+        <a href="index.html#contact" class="modal-cta">Request a Forge Consultation →</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="post5">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closePost('post5')">✕</button>
+    <div class="modal-tag">Methodology · Evidence vs Opinion</div>
+    <h2 class="modal-title">Expert Data or Inherited Opinion? Why How You Diagnose Determines What You Discover</h2>
+    <div class="modal-meta">Forge Partners, Inc. · January 2026 · 7 min read</div>
+    <div class="modal-body">
+      <p>Every organization has a story it tells itself about how it works. That story is rarely wrong in spirit — but it is almost always incomplete, biased toward the perspectives of the people most able to articulate it, and shaped by the cultural norms of the room in which it is told. When that story becomes the basis for strategic decisions, the organization is making bets on a partial picture.</p>
+      <p>The alternative is evidence. Not survey scores. Not engagement averages. Structured, expert-led data collection across the disciplines that actually determine whether an organization can execute: organizational structure, organizational behavior, process improvement, change management, talent systems, governance, and culture. Analyzed by practitioners who have spent decades watching how these disciplines interact under pressure.</p>
+      <h4>What Institutionalized Opinion Looks Like</h4>
+      <p>Institutionalized opinion is what you get when a long-tenured executive team describes how the organization works. It is what gets repeated in board meetings, baked into onboarding, and quoted at offsites. It is largely true — and the parts that are not true are exactly the parts that cause transformations to fail. Because they are baked into the cultural narrative, they are the hardest to surface and the most expensive to ignore.</p>
+      <p>Culture-shaped perspective has the same problem in a different form. The culture itself filters what gets said in meetings, which problems are acceptable to name, and which observations are politically safe. Senior leaders who built the culture often cannot see the parts of it that no longer serve the organization — not because they lack skill, but because they are inside the system they are trying to assess.</p>
+      <h4>What Expert-Led Diagnostic Data Looks Like</h4>
+      <p>Expert-led diagnostic data is collected by practitioners who do not depend on the organization's culture to surface findings. It uses structured instruments grounded in industrial-organizational psychology, change management theory, process improvement, and adult learning science. It cross-checks self-report against behavioral evidence, decision-rights mapping, and operational handoff analysis. It is interpreted by people whose job is to tell leadership what is true — not what is comfortable.</p>
+      <p>The difference shows up in what gets discovered. Institutionalized opinion produces familiar conclusions. Expert-led diagnostics produce the uncomfortable, specific, sequenced findings that actually move the organization.</p>
+      <h4>Why This Matters Now</h4>
+      <p>The pace and stakes of transformation have outrun the diagnostic tools most organizations rely on. AI adoption, scaling decisions, restructuring, and M&amp;A all demand a level of diagnostic precision that culture-shaped narrative cannot deliver. Boards are being asked to commit capital to changes the organization has never honestly tested its readiness to absorb.</p>
+      <h4>The Forge Approach</h4>
+      <p>Forge Partners was built on the premise that diagnostic independence is non-negotiable. The Stress Test™ and Strength Index™ exist to give executive teams a quantified, expert-analyzed view of their own organization — one that is not filtered by the culture being measured. Not a coach's opinion. Not a survey aggregate. A structured, defensible picture of readiness.</p>
+      <div class="modal-cta-row">
+        <p style="margin-bottom:1rem;"><strong style="color:var(--white);font-weight:500;">Make your next decision against evidence — not narrative.</strong> If you are about to commit to a consequential change and want to test it against expert-collected, expert-analyzed data rather than the story your organization tells itself, a Forge consultation is the right next step.</p>
+        <a href="index.html#contact" class="modal-cta">Request a Forge Consultation →</a>
+      </div>
     </div>
   </div>
 </div>
@@ -607,6 +707,15 @@
   function openPost(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function closePost(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
   document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', function(e) { if (e.target===this) closePost(this.id); }));
+  // Auto-open modal if URL hash matches a post id (e.g., from the Insights catalog page)
+  function openPostFromHash() {
+    const h = (window.location.hash || '').replace('#','');
+    if (h && /^post[1-9][0-9]*$/.test(h) && document.getElementById(h)) {
+      openPost(h);
+    }
+  }
+  window.addEventListener('load', openPostFromHash);
+  window.addEventListener('hashchange', openPostFromHash);
   const quizAnswers = {};
   function selectOpt(btn, q) { btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); quizAnswers[q] = parseInt(btn.dataset.score); }
   function submitQuiz() {

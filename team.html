@@ -31,7 +31,8 @@
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 0.75rem 1.5rem;
     padding: 1.2rem 5%;
     background: rgba(30,51,80,0.95);
     backdrop-filter: blur(12px);
@@ -47,8 +48,8 @@
   }
   .nav-logo span { color: var(--orange); }
   .nav-links {
-    display: flex; align-items: center; gap: 2.5rem;
-    list-style: none;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.8rem;
+    list-style: none; justify-content: flex-end;
   }
   .nav-links a {
     font-size: 0.82rem;
@@ -58,6 +59,7 @@
     text-decoration: none;
     opacity: 0.8;
     transition: opacity 0.2s, color 0.2s;
+    white-space: nowrap;
   }
   .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--orange-lt); }
   .nav-cta {
@@ -67,6 +69,7 @@
     background: var(--orange);
     padding: 0.6rem 1.4rem;
     opacity: 1 !important;
+    white-space: nowrap;
   }
   .nav-cta:hover { background: var(--orange-lt) !important; }
 
@@ -438,8 +441,9 @@
   }
 
   .consultant-portrait {
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
+    padding-top: 6px;
     background: rgba(52,79,112,0.25);
     border: 1px solid rgba(232,98,42,0.2);
     display: flex;
@@ -454,6 +458,7 @@
     top: 0; left: 0;
     width: 100%; height: 3px;
     background: linear-gradient(90deg, var(--orange), transparent);
+    z-index: 2;
   }
 
   .consultant-info {}
@@ -529,6 +534,7 @@
     text-transform: uppercase;
     text-decoration: none;
     transition: background 0.2s;
+    white-space: nowrap;
   }
   .btn-primary:hover { background: var(--orange-lt); }
 
@@ -746,12 +752,12 @@
         margin:0 0 1.5rem 0;
         background:rgba(232,98,42,0.05);
       ">"Leadership is a trainable skill set. With the right structure, challenge, and support, individuals and teams can consistently perform at a higher level."
-        <span style="display:block;font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);opacity:0.8;margin-top:0.4rem;">— J. Tyler Fisher, Ed.D</span>
+        <span style="display:block;font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);opacity:0.8;margin-top:0.4rem;">— J. Tyler Fisher, Ed.D.</span>
       </blockquote>
 
       <p>Tyler's career began in high-performance athletics as a strength and conditioning coach at the University of Nebraska, Drake University and TCU, where he spent eight years developing athletes and teams under measurable pressure — an environment that informs his approach to leadership and organizational capability.</p>
 
-      <p>Tyler operates at the intersection of performance, behavior, and execution. With more than 21 years of experience across collegiate athletics, higher education, and corporate environments, his work is grounded in a single principle: leadership capability is built through disciplined development. He transitioned from physical performance to organizational performance 13 years ago, pairing applied experience with academic depth through a Doctorate in Educational Leadership (Ed.D).</p>
+      <p>Tyler operates at the intersection of performance, behavior, and execution. With more than 21 years of experience across collegiate athletics, higher education, and corporate environments, his work is grounded in a single principle: leadership capability is built through disciplined development. He transitioned from physical performance to organizational performance 13 years ago, pairing applied experience with academic depth through a Doctorate in Educational Leadership (Ed.D.).</p>
       <p>Tyler brings the same rigor to leadership development that defines elite sport. Leveraging more than 5,000 hours of coaching and facilitation experience, he designs and delivers programs that move beyond theory and into sustained behavioral change — strengthening leaders&#8217; skills including self-awareness, decision-making, communication, and strategic execution.</p>
 
       <div class="consultant-tags">
@@ -765,18 +771,7 @@
     </div>
   </div>
 
-  <!-- METHODOLOGY GUARANTEE -->
-  <div class="method-guarantee fade-up" style="max-width:900px; margin-top:2.5rem;">
-    <div class="method-guarantee-label">The Forge Standard — Every Consultant, Every Engagement</div>
-    <div class="method-guarantee-title">Every practitioner who carries the Forge methodology is certified to a single, non-negotiable standard.</div>
-    <div class="method-guarantee-items">
-      <div class="method-guarantee-item">Trained and certified  to PMP-equivalent rigor — not a self-paced course, a practitioner pathway.</div>
-      <div class="method-guarantee-item">Operates exclusively within the Stress Test™ and Strength Index™ framework. No improvised methodology. No generic consulting overlaid on proprietary tools.</div>
-      <div class="method-guarantee-item">Delivers board-ready findings — structured, quantified, and documented to governance-grade clarity that executives and sponsors can act on immediately.</div>
-      <div class="method-guarantee-item">Maintains diagnostic independence. Forge consultants are prohibited from scripting findings to match political narratives or client preferences. Organizational truth is non-negotiable.</div>
-      <div class="method-guarantee-item">Subject to annual recertification and ongoing engagement standards review. The methodology evolves. Certification must keep pace.</div>
-    </div>
-  </div>
+
 </section>
 
 <!-- JOIN / BECOME A PRACTITIONER CTA -->
