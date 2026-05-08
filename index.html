@@ -3,7 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forge Partners, Inc. | Organizational Diagnostic & AI Readiness</title>
+<title>Forge Partners | AI Readiness & Organizational Diagnostic Consulting</title>
+
+<!-- SEO Meta -->
+<meta name="description" content="85% of AI implementations fail. Forge Partners diagnoses organizational fractures before you commit capital — so your transformation actually succeeds.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://forgepartnersinc.com/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Forge Partners | AI Readiness & Organizational Diagnostic Consulting">
+<meta property="og:description" content="85% of AI implementations fail. Forge Partners diagnoses organizational fractures before you commit capital — so your transformation actually succeeds.">
+<meta property="og:url" content="https://forgepartnersinc.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Forge Partners, Inc.">
+
+<!-- Formspree Ajax -->
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -531,39 +550,104 @@
       </div>
     </div>
     <div class="consult-form fade-up">
-      <div id="formWrap">
-        <div class="form-title">Request a Consultation</div>
-        <div class="form-sub">Tell us about yourself and we'll be in touch within one business day.</div>
-        <div class="form-row">
-          <div class="form-group"><label>First Name <span class="req">*</span></label><input type="text" placeholder="Jane" id="fname"></div>
-          <div class="form-group"><label>Last Name <span class="req">*</span></label><input type="text" placeholder="Smith" id="lname"></div>
-        </div>
-        <div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email" placeholder="jane@yourcompany.com" id="email"></div>
-        <div class="form-group"><label>Message <span class="req">*</span></label><textarea placeholder="Tell us about your organization and what you're working through..." id="message"></textarea></div>
-        <label class="form-toggle">
-          <input type="checkbox" id="detailToggle" onchange="toggleDetails()">
-          <span class="toggle-box"><span class="toggle-check">✓</span></span>
-          Share additional context about your organization (optional)
-        </label>
-        <div class="form-extended" id="extendedFields">
-          <div class="form-divider">Organization Details</div>
-          <div class="form-row">
-            <div class="form-group"><label>Company Name</label><input type="text" placeholder="Acme Corp"></div>
-            <div class="form-group"><label>Your Role / Title</label><input type="text" placeholder="Chief Executive Officer"></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label>Annual Revenue</label><select><option value="">Select range</option><option></option><option>$50M – $100M</option><option>$100M – $250M</option><option>$250M – $500M</option><option>$500M+</option></select></div>
-            <div class="form-group"><label>Primary Challenge</label><select><option value="">Select one</option><option>AI Readiness Assessment</option><option>Organizational Change</option><option>M&amp;A Integration</option><option>Leadership Alignment</option><option>Scaling &amp; Growth</option><option>Framework Licensing</option><option>Practitioner Certification</option><option>Other</option></select></div>
-          </div>
-          <div class="form-group"><label>How Did You Hear About Us?</label><select><option value="">Select one</option><option>Referral</option><option>LinkedIn</option><option>Web Search</option><option>Conference / Event</option><option>Publication</option><option>Other</option></select></div>
-        </div>
-        <button class="btn-submit" onclick="submitForm()">Submit Request</button>
-        <p class="form-disclaimer">Your information is kept strictly confidential and will only be used to contact you about your inquiry.</p>
-      </div>
-      <div class="form-success" id="formSuccess">
+      <!-- Formspree success message -->
+      <div data-fs-success style="display:none;" class="form-success" id="formSuccess">
         <h3>Request Received</h3>
         <p>Thank you for reaching out. A member of the Forge Partners team will be in touch within one business day — along with the Forge diagnostic brief matched to your context.</p>
       </div>
+      <!-- Formspree form-level error message -->
+      <div data-fs-error style="display:none;margin-bottom:1rem;color:#E8622A;font-size:0.85rem;"></div>
+
+      <form id="consultation-form" novalidate>
+        <!-- Hidden Formspree subject line -->
+        <input type="hidden" name="_subject" value="New Consultation Request — Forge Partners">
+
+        <div id="formWrap">
+          <div class="form-title">Request a Consultation</div>
+          <div class="form-sub">Tell us about yourself and we'll be in touch within one business day.</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name <span class="req">*</span></label>
+              <input type="text" placeholder="Jane" id="fname" name="first-name" required data-fs-field>
+              <span data-fs-error="first-name" style="font-size:0.78rem;color:#E8622A;margin-top:0.25rem;display:block;"></span>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name <span class="req">*</span></label>
+              <input type="text" placeholder="Smith" id="lname" name="last-name" required data-fs-field>
+              <span data-fs-error="last-name" style="font-size:0.78rem;color:#E8622A;margin-top:0.25rem;display:block;"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" placeholder="jane@yourcompany.com" id="email" name="email" required data-fs-field>
+            <span data-fs-error="email" style="font-size:0.78rem;color:#E8622A;margin-top:0.25rem;display:block;"></span>
+          </div>
+          <div class="form-group">
+            <label for="message">Message <span class="req">*</span></label>
+            <textarea placeholder="Tell us about your organization and what you're working through..." id="message" name="message" required data-fs-field></textarea>
+            <span data-fs-error="message" style="font-size:0.78rem;color:#E8622A;margin-top:0.25rem;display:block;"></span>
+          </div>
+          <label class="form-toggle">
+            <input type="checkbox" id="detailToggle" onchange="toggleDetails()">
+            <span class="toggle-box"><span class="toggle-check">✓</span></span>
+            Share additional context about your organization (optional)
+          </label>
+          <div class="form-extended" id="extendedFields">
+            <div class="form-divider">Organization Details</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="company">Company Name</label>
+                <input type="text" placeholder="Acme Corp" id="company" name="company">
+              </div>
+              <div class="form-group">
+                <label for="role">Your Role / Title</label>
+                <input type="text" placeholder="Chief Executive Officer" id="role" name="role">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="revenue">Annual Revenue</label>
+                <select id="revenue" name="annual-revenue">
+                  <option value="">Select range</option>
+                  <option>Under $50M</option>
+                  <option>$50M – $100M</option>
+                  <option>$100M – $250M</option>
+                  <option>$250M – $500M</option>
+                  <option>$500M+</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="challenge">Primary Challenge</label>
+                <select id="challenge" name="primary-challenge">
+                  <option value="">Select one</option>
+                  <option>AI Readiness Assessment</option>
+                  <option>Organizational Change</option>
+                  <option>M&amp;A Integration</option>
+                  <option>Leadership Alignment</option>
+                  <option>Scaling &amp; Growth</option>
+                  <option>Framework Licensing</option>
+                  <option>Practitioner Certification</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="referral">How Did You Hear About Us?</label>
+              <select id="referral" name="referral-source">
+                <option value="">Select one</option>
+                <option>Referral</option>
+                <option>LinkedIn</option>
+                <option>Web Search</option>
+                <option>Conference / Event</option>
+                <option>Publication</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit" data-fs-submit-btn>Submit Request</button>
+          <p class="form-disclaimer">Your information is kept strictly confidential and will only be used to contact you about your inquiry.</p>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -695,36 +779,62 @@
 </div>
 
 <script>
-  const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold:0.08, rootMargin:'0px 0px -40px 0px' });
+  /* ── Scroll-reveal ── */
+  const observer = new IntersectionObserver(
+    (entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); },
+    { threshold:0.08, rootMargin:'0px 0px -40px 0px' }
+  );
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  function toggleDetails() { document.getElementById('extendedFields').classList.toggle('visible', document.getElementById('detailToggle').checked); }
-  function submitForm() {
-    const f = id => document.getElementById(id).value.trim();
-    if (!f('fname')||!f('lname')||!f('email')||!f('message')) { alert('Please fill in all required fields.'); return; }
-    document.getElementById('formWrap').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
+
+  /* ── Optional fields toggle ── */
+  function toggleDetails() {
+    document.getElementById('extendedFields').classList.toggle('visible', document.getElementById('detailToggle').checked);
   }
+
+  /* ── Formspree initialization (runs after the CDN script loads) ── */
+  window.addEventListener('load', function () {
+    if (typeof formspree === 'function') {
+      formspree('initForm', {
+        formElement: '#consultation-form',
+        formId: 'xwvynrdv'
+      });
+    }
+  });
+
+  /* ── Modal helpers ── */
   function openPost(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function closePost(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
   document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', function(e) { if (e.target===this) closePost(this.id); }));
-  // Auto-open modal if URL hash matches a post id (e.g., from the Insights catalog page)
+
+  /* Auto-open modal from URL hash (e.g. from Insights page) */
   function openPostFromHash() {
     const h = (window.location.hash || '').replace('#','');
-    if (h && /^post[1-9][0-9]*$/.test(h) && document.getElementById(h)) {
-      openPost(h);
-    }
+    if (h && /^post[1-9][0-9]*$/.test(h) && document.getElementById(h)) { openPost(h); }
   }
   window.addEventListener('load', openPostFromHash);
   window.addEventListener('hashchange', openPostFromHash);
+
+  /* ── Self-assessment quiz ── */
   const quizAnswers = {};
-  function selectOpt(btn, q) { btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); quizAnswers[q] = parseInt(btn.dataset.score); }
+  function selectOpt(btn, q) {
+    btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    quizAnswers[q] = parseInt(btn.dataset.score);
+  }
   function submitQuiz() {
     if (Object.keys(quizAnswers).length < 5) { alert('Please answer all 5 questions to get your score.'); return; }
     const pct = Math.round((Object.values(quizAnswers).reduce((a,b)=>a+b,0)/20)*100);
     let label, text;
-    if (pct >= 80) { label='Organizationally Strong'; text='Your preliminary indicators suggest strong organizational readiness. A full Forge Stress Test™ engagement will validate these indicators across all five diagnostic pillars and identify any latent vulnerabilities before your next major initiative.'; }
-    else if (pct >= 55) { label='Moderate Exposure'; text='Your responses indicate moderate organizational exposure in at least two areas. A full Forge Stress Test™ would identify the specific failure chains most likely to surface under pressure — and give your leadership team a clear sequencing plan.'; }
-    else { label='Elevated Risk'; text='Your preliminary indicators suggest meaningful organizational vulnerabilities. Before committing capital to transformation or scaling, AI investment, or growth, a Forge diagnostic engagement is strongly recommended. The cost of discovering these gaps during execution is significantly higher than addressing them before.'; }
+    if (pct >= 80) {
+      label='Organizationally Strong';
+      text='Your preliminary indicators suggest strong organizational readiness. A full Forge Stress Test™ engagement will validate these indicators across all five diagnostic pillars and identify any latent vulnerabilities before your next major initiative.';
+    } else if (pct >= 55) {
+      label='Moderate Exposure';
+      text='Your responses indicate moderate organizational exposure in at least two areas. A full Forge Stress Test™ would identify the specific failure chains most likely to surface under pressure — and give your leadership team a clear sequencing plan.';
+    } else {
+      label='Elevated Risk';
+      text='Your preliminary indicators suggest meaningful organizational vulnerabilities. Before committing capital to transformation or scaling, AI investment, or growth, a Forge diagnostic engagement is strongly recommended. The cost of discovering these gaps during execution is significantly higher than addressing them before.';
+    }
     document.getElementById('quizScore').textContent = pct;
     document.getElementById('quizLabel').textContent = label+' · Strength Index™ Preview';
     document.getElementById('quizText').textContent = text;
